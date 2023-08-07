@@ -2,17 +2,20 @@ const socket = io();
 
 document.getElementById('sendMessage').addEventListener('click', () => {
   const messageInput = document.getElementById('messageInput');
-  const message = messageInput.value;
+  const message = messageInput.value.trim();
   messageInput.value = '';
-
+  
+  
   if (message) {
     socket.emit('message', message);
+    messageInput.value = '';
   }
+  
 });
 
 document.getElementById('joinButton').addEventListener('click', () => {
   const nameInput = document.getElementById('nameInput');
-  const userName = nameInput.value;
+  const userName = nameInput.value.trim();
 
   if (userName) {
     socket.emit('userJoined', userName);
